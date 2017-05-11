@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eep-kH-heF">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="QrX-Gb-r4L">
+            <objects>
+                <viewController id="eep-kH-heF" customClass="SearchViewController" customModule="First" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SpA-qa-E4u"/>
+                        <viewControllerLayoutGuide type="bottom" id="qOt-s6-CSz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r6e-uj-KRb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="Y2E-Ng-JjI">
+                                <rect key="frame" x="20" y="20" width="560" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eep-kH-heF" id="V0i-U9-2Na"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z47-f8-5V2">
+                                <rect key="frame" x="20" y="64" width="560" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Testcell" rowHeight="24" id="NC5-PX-Igl">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="24"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NC5-PX-Igl" id="ISO-Fn-ps3">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="23.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eep-kH-heF" id="b1T-CN-wXH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y2E-Ng-JjI" firstAttribute="top" secondItem="SpA-qa-E4u" secondAttribute="bottom" id="TMP-ad-baJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y2E-Ng-JjI" secondAttribute="trailing" id="Uha-bf-44M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="z47-f8-5V2" secondAttribute="trailing" id="XO9-c5-M4z"/>
+                            <constraint firstItem="z47-f8-5V2" firstAttribute="top" secondItem="Y2E-Ng-JjI" secondAttribute="bottom" id="XSe-am-FeB"/>
+                            <constraint firstItem="Y2E-Ng-JjI" firstAttribute="leading" secondItem="r6e-uj-KRb" secondAttribute="leadingMargin" id="b2A-aH-XWW"/>
+                            <constraint firstItem="qOt-s6-CSz" firstAttribute="top" secondItem="z47-f8-5V2" secondAttribute="bottom" id="dfZ-LE-hdb"/>
+                            <constraint firstItem="z47-f8-5V2" firstAttribute="leading" secondItem="r6e-uj-KRb" secondAttribute="leadingMargin" id="uPL-QZ-cUe"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Oh4-QX-JI3"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="SearchBar" destination="Y2E-Ng-JjI" id="4G2-9j-iN9"/>
+                        <outlet property="TableView" destination="z47-f8-5V2" id="Xd9-wz-oDF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGr-WK-4pH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="-103"/>
+        </scene>
+    </scenes>
+</document>
