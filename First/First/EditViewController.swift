@@ -33,6 +33,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
     
 
     // データ登録/更新
+    /*
     func writeData(txtMemo: String) -> Bool{
         var ret = false
         
@@ -123,7 +124,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
             print("FETCH ERROR:\(error.localizedDescription)")
         }
         return ret
-    }
+    }*/
     
     /*
     // MARK: - Navigation
