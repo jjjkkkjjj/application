@@ -103,9 +103,7 @@ class CommonVar{
 }
 
 class Section{
-    // dictionary [title name: [content names]]
     var title: String
-    // contents[title name(= above title name)][name][content]
     var content: [String]
 
     init(title: String, content: [String]){
@@ -147,12 +145,10 @@ class Section{
     func removeSection(){
 
     }
-    func removeData(section: String, name: String){
-
-    }
 }
 
 class Item: Section{
+    //
     var item = [[String]]()
 
     override init(title: String, content: [String]){
@@ -170,6 +166,10 @@ class Item: Section{
     func appendItem(contentData: [String]){
         self.item.append(contentData)
     }
+
+    func removeData(sectionRow: Int){
+        self.item.remove(at: sectionRow)
+    }
 }
 
 class File{
@@ -177,8 +177,10 @@ class File{
     var contentData = [[String]]()
     var contents = [Item]()
 
+    //var buttonSave: Bool = false
+
     func set(){
-        //self.initCsv()
+        //self.initCsv() // uncoment when you'd like to rewrite csv
         if (!self.initReadCsv()){
             self.sectionInfo = [String]()
             self.contentData = [[String]]()
@@ -214,7 +216,9 @@ class File{
     }
 
     func removeData(section: Int, sectionRow: Int){
-
+        self.contentData[section].remove(at: sectionRow)
+        self.contents[section].removeData(sectionRow: sectionRow)
+        self.rewriteNowData(sectionInfo: false, contentData: true)
     }
 
     func initReadCsv() -> Bool{
@@ -231,7 +235,7 @@ class File{
                 csvData.enumerateLines{ (line, stop) -> () in
                     var values = line.components(separatedBy: ",")
 
-                    let item = Item(title: values[0], content: Array(values[1..<values.count]))
+                    var item = Item(title: values[0], content: Array(values[1..<values.count]))
                     self.contents.append(item)
                     self.sectionInfo.append(line)
                     self.contentData.append([])
@@ -286,7 +290,6 @@ class File{
 
             }
         }
-
         if(contentData){
             do{
                 if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
@@ -294,19 +297,27 @@ class File{
                     let csvPath = fileurl.appendingPathComponent("/ContentData.csv")
 
                     //CSVファイルのデータを取得する。
+                    var text = ""
                     for section in self.contentData{
-                        var text = ""
                         for line in section{
                             text += line + "\n"
                         }
-                        try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
                     }
+                    try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
                 }
             }
             catch {
 
             }
         }
+    }
+
+    func sectionName() -> [String]{
+        var sectionNames = [String]()
+        for section in self.contents{
+            sectionNames.append(section.title)
+        }
+        return sectionNames
     }
 
     func sectionTitleIndex (title: String) -> Int{

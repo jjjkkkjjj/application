@@ -40,10 +40,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // セクションのヘッダとなるビューを作成する。
         let myView: UIView = UIView()
         let label:UILabel = UILabel()
-        for (key) in self.File.contents[section].titleName()
-        {
-            label.text = key
-        }
+        label.text = self.File.contents[section].title
         label.sizeToFit()
         label.textColor = UIColor.black
         myView.addSubview(label)
