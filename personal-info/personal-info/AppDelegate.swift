@@ -93,33 +93,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 class CommonVar{
-    var section:Section?
+    var file:File
 
-    func setdata(sections: [String], contents: [String]){
-        self.section = Section()
-        // set section infomation
-        for line in sections{
-            var values = line.components(separatedBy: ",")
-
-            self.section!.appendsection(title: values[0], contents: Array(values[1..<values.count]))
-        }
-        // set content information
-        for line in contents{
-            var values = line.components(separatedBy: ",")
-            self.section!.appenddata(title: values[0], contentData: Array(values[1..<values.count]))
-        }
+    init(){
+        //read csv, then set data for Section and Content class
+        self.file = File()
+        self.file.set()
     }
-
 }
 
 class Section{
-    var titles = [String]()
-    var contents = [Content]()
+    // dictionary [title name: [content names]]
+    var title: String
+    // contents[title name(= above title name)][name][content]
+    var content: [String]
 
-    func appendsection (title: String, contents: [String]) -> Bool{
+    init(title: String, content: [String]){
+        self.title = title
+        self.content = content
+    }
+    /*
+    func appendSection (title: String, contents: [String], initcall: Bool) -> Bool{
         if (self.titles.index(of: title) == nil){
             self.titles.append(title)
             self.contents.append(Content(contentNames: contents))
+
+            if(!initcall){
+                //call writecsv method of super class
+            }
+
             return true
         }
         else{
@@ -127,49 +129,194 @@ class Section{
         }
     }
 
-    func appenddata(title: String, contentData: [String]) -> Bool{
+    func appendData(title: String, contentData: [String], initcall: Bool) -> Bool{
         if let index = self.titles.index(of: title){
             self.contents[index].setContentData(title: contentData[0], contentData: Array(contentData[1..<contentData.count]))
+
+            if(!initcall){
+                //call writecsv method of super class
+            }
+
             return true
         }
         else{
             return false
         }
+    }*/
+
+    func removeSection(){
+
+    }
+    func removeData(section: String, name: String){
+
     }
 }
 
-class Content{
-    var names = [String]()
-    var contents_name = [String]()
-    var contents_data = [[String]]()
+class Item: Section{
+    var item = [[String]]()
 
-    // for contents name
-    init(contentNames: [String]){
-        for name in contentNames{
-            self.contents_name.append(name)
-        }
-    }
-    // for actual data
-    func setContentData(title: String,contentData: [String]){
-        self.names.append(title)
-        self.contents_data.append(contentData)
+    override init(title: String, content: [String]){
+        super.init(title: title, content: content)
     }
 
-    func printforcheck(){
-        var tmp = ""
-        for contentname in contents_name{
-            tmp += contentname + " "
+    func titleName() -> [String]{
+        var titleNames = [String]()
+        for item in self.item{
+            titleNames.append(item[0])
         }
-        print(tmp)
+        return titleNames
+    }
 
-        for contents in contents_data{
-            tmp = ""
-            for content in contents{
-                tmp += content + " "
+    func appendItem(contentData: [String]){
+        self.item.append(contentData)
+    }
+}
+
+class File{
+    var sectionInfo = [String]()
+    var contentData = [[String]]()
+    var contents = [Item]()
+
+    func set(){
+        //self.initCsv()
+        if (!self.initReadCsv()){
+            self.sectionInfo = [String]()
+            self.contentData = [[String]]()
+            self.contents = [Item]()
+
+            self.initCsv()
+            self.initReadCsv()
+        }
+    }
+
+    func initCsv(){
+        do {
+            if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+                //CSVファイルのパスを取得する。
+                let csvPath = fileurl.appendingPathComponent("/SectionInfo.csv")
+
+                //CSVファイルのデータを取得する。
+                let text = "Shopping,name,url,account,password\nAPP,name,password\n"
+                try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
             }
-            print(tmp)
+            if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+                //CSVファイルのパスを取得する。
+                let csvPath = fileurl.appendingPathComponent("/ContentData.csv")
+
+                //CSVファイルのデータを取得する。
+                let text = "Shopping,amazon,https://www.amazon.co.jp,aaa,1234\nAPP,round1,1111\nShopping,hoge,www.hoge.co.jp,aaa,i234"
+                try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
+            }
+        }
+        catch {
+
         }
     }
+
+    func removeData(section: Int, sectionRow: Int){
+
+    }
+
+    func initReadCsv() -> Bool{
+        do {
+            //CSVファイルのパスを取得する。
+            if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+                //CSVファイルのパスを取得する。
+                let csvPath = fileurl.appendingPathComponent("/SectionInfo.csv")
+                //CSVファイルのデータを取得する。
+                let csvData = try String(contentsOf: csvPath, encoding:String.Encoding.utf8)
+
+                //改行区切りでデータを分割して配列に格納する。
+
+                csvData.enumerateLines{ (line, stop) -> () in
+                    var values = line.components(separatedBy: ",")
+
+                    let item = Item(title: values[0], content: Array(values[1..<values.count]))
+                    self.contents.append(item)
+                    self.sectionInfo.append(line)
+                    self.contentData.append([])
+                }
+            }
+            else{
+                return false
+            }
+
+            if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+                //CSVファイルのパスを取得する。
+                let csvPath = fileurl.appendingPathComponent("/ContentData.csv")
+                //CSVファイルのデータを取得する。
+                let csvData = try String(contentsOf: csvPath, encoding:String.Encoding.utf8)
+
+                //改行区切りでデータを分割して配列に格納する。
+
+                csvData.enumerateLines{ (line, stop) -> () in
+                    var values = line.components(separatedBy: ",")
+                    let titleIndex = self.sectionTitleIndex(title: values[0])
+                    if (titleIndex != -1){
+                        self.contents[titleIndex].appendItem(contentData: Array(values[1..<values.count]))
+                        self.contentData[titleIndex].append(line)
+                    }
+                }
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        catch {
+            return false
+        }
+    }
+
+    func rewriteNowData(sectionInfo: Bool, contentData: Bool){
+        if(sectionInfo){
+            do{
+                if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first{
+                    //CSVファイルのパスを取得する。
+                    let csvPath = fileurl.appendingPathComponent("/SectionInfo.csv")
+
+                    //CSVファイルのデータを取得する。
+                    var text = ""
+                    for line in self.sectionInfo{
+                        text += line + "\n"
+                    }
+                    try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
+                }
+            }catch {
+
+            }
+        }
+
+        if(contentData){
+            do{
+                if let fileurl = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+                    //CSVファイルのパスを取得する。
+                    let csvPath = fileurl.appendingPathComponent("/ContentData.csv")
+
+                    //CSVファイルのデータを取得する。
+                    for section in self.contentData{
+                        var text = ""
+                        for line in section{
+                            text += line + "\n"
+                        }
+                        try text.write(to: csvPath, atomically: true, encoding: String.Encoding.utf8)
+                    }
+                }
+            }
+            catch {
+
+            }
+        }
+    }
+
+    func sectionTitleIndex (title: String) -> Int{
+        var titleindex = -1
+        for (index, item) in self.contents.enumerated(){
+            if (item.title == title){
+                titleindex = index
+                return titleindex
+            }
+        }
+        return titleindex
+    }
 }
-
-

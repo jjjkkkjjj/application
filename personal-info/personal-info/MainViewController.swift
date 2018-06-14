@@ -14,9 +14,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var myTableView: UITableView!
 
-    var Items = [NSMutableArray]()
-    var Sections: Array = [Dictionary<String,NSMutableArray>]()
+    var File: File = (UIApplication.shared.delegate as! AppDelegate).commonvar.file
     var FoldingFlags = [Bool]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +27,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func tableview(){
-        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        let section = appdelegate.commonvar.section!
-
-        for (i, (title, content)) in zip(section.titles, section.contents).enumerated(){
-            Items.append(NSMutableArray(array: content.names))
-            self.Sections.append([title: Items[i]])
-            self.FoldingFlags.append(false)
-        }
-
         // デリゲートを設定する。
         myTableView.delegate = self
         myTableView.dataSource = self
-
+        for _ in self.File.contents{
+            self.FoldingFlags.append(false)
+        }
     }
 
     // UIViewを返す。
@@ -47,7 +40,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // セクションのヘッダとなるビューを作成する。
         let myView: UIView = UIView()
         let label:UILabel = UILabel()
-        for (key) in self.Sections[section].keys
+        for (key) in self.File.contents[section].titleName()
         {
             label.text = key
         }
@@ -66,37 +59,22 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // セクションの数を返す。
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.Sections.count
+        return self.File.contents.count
     }
 
     // セクションのタイトルを返す。
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title = ""
-        for (key) in Sections[section].keys
-        {
-            title = key
-        }
-        return title
+        return self.File.contents[section].title
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let itemnum = Sections.count
-
-        if (section < itemnum){
-            return self.FoldingFlags[section] ? 0: Items[section].count
-        }
-        else {
-            return 0
-        }
+        return self.FoldingFlags[section] ? 0: self.File.contents[section].item.count
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:  "cell", for:indexPath as IndexPath)
-        for (value) in Sections[indexPath.section].values
-        {
-            cell.textLabel?.text = value[indexPath.row] as? String
-        }
+        cell.textLabel?.text = self.File.contents[indexPath.section].titleName()[indexPath.row]
 
         return cell
     }
@@ -104,12 +82,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // テーブルビューをスワイプしてデータを削除する。
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
-            for (value) in self.Sections[indexPath.section].values
-            {
-                value.removeObject(at: indexPath.row)
-            }
+            self.File.removeData(section: indexPath.section, sectionRow: indexPath.row)
 
             tableView.deleteRows(at: [indexPath], with: .fade)
+            //print("called del")
+            // this area is processed when tapped delete button
+            // rewrite csv
+
         }
         deleteButton.backgroundColor = UIColor.red
 
@@ -119,11 +98,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // 選択したセルの値を出力する。
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         // タップしたセルのテキストを取得する。
-        var selectText = ""
-        for (value) in self.Sections[indexPath.section].values
-        {
-            selectText = value[indexPath.row] as! String
-        }
+        let selectText = self.File.contents[indexPath.section].titleName()[indexPath.row]
 
         // アラートを生成する。
         let alert: UIAlertController = UIAlertController(title: selectText, message: "\(selectText)を選択しました。", preferredStyle:  UIAlertControllerStyle.alert)
