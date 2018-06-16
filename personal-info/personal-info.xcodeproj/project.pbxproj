@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E021F9E20D4CA47004A1A9E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E021F9D20D4CA47004A1A9E /* CustomCell.swift */; };
 		0E070F3620CD1BD600AB51CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E070F3520CD1BD600AB51CE /* AppDelegate.swift */; };
-		0E070F3820CD1BD600AB51CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E070F3720CD1BD600AB51CE /* ViewController.swift */; };
+		0E070F3820CD1BD600AB51CE /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E070F3720CD1BD600AB51CE /* InitViewController.swift */; };
 		0E070F3B20CD1BD600AB51CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E070F3920CD1BD600AB51CE /* Main.storyboard */; };
 		0E070F3E20CD1BD600AB51CE /* personal_info.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E070F3C20CD1BD600AB51CE /* personal_info.xcdatamodeld */; };
 		0E070F4020CD1BD700AB51CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E070F3F20CD1BD700AB51CE /* Assets.xcassets */; };
@@ -17,9 +18,9 @@
 		0E070F5920CD1BD700AB51CE /* personal_infoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E070F5820CD1BD700AB51CE /* personal_infoUITests.swift */; };
 		0E0FB55320CD42E00064EDA7 /* SlideViewControllenar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55220CD42E00064EDA7 /* SlideViewControllenar.swift */; };
 		0E0FB55520CD4FD60064EDA7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55420CD4FD60064EDA7 /* MainViewController.swift */; };
-		0E0FB55720CD51CC0064EDA7 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55620CD51CC0064EDA7 /* LeftViewController.swift */; };
+		0E0FB55720CD51CC0064EDA7 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55620CD51CC0064EDA7 /* ConfigViewController.swift */; };
 		0E0FB55920CD538A0064EDA7 /* icon in Resources */ = {isa = PBXBuildFile; fileRef = 0E0FB55820CD538A0064EDA7 /* icon */; };
-		0E0FB55B20CD61990064EDA7 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55A20CD61990064EDA7 /* RightViewController.swift */; };
+		0E0FB55B20CD61990064EDA7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55A20CD61990064EDA7 /* SearchViewController.swift */; };
 		0E0FB55D20CD83990064EDA7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55C20CD83990064EDA7 /* AddViewController.swift */; };
 		EB56C9D54BE714C55CBF7A67 /* Pods_personal_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CFAF90291615D13675738A /* Pods_personal_info.framework */; };
 /* End PBXBuildFile section */
@@ -42,9 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E021F9D20D4CA47004A1A9E /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0E070F3220CD1BD500AB51CE /* personal-info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "personal-info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E070F3520CD1BD600AB51CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E070F3720CD1BD600AB51CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0E070F3720CD1BD600AB51CE /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		0E070F3A20CD1BD600AB51CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E070F3D20CD1BD600AB51CE /* personal_info.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = personal_info.xcdatamodel; sourceTree = "<group>"; };
 		0E070F3F20CD1BD700AB51CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,9 +60,9 @@
 		0E070F5A20CD1BD700AB51CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E0FB55220CD42E00064EDA7 /* SlideViewControllenar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideViewControllenar.swift; sourceTree = "<group>"; };
 		0E0FB55420CD4FD60064EDA7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		0E0FB55620CD51CC0064EDA7 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		0E0FB55620CD51CC0064EDA7 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		0E0FB55820CD538A0064EDA7 /* icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icon; sourceTree = "<group>"; };
-		0E0FB55A20CD61990064EDA7 /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		0E0FB55A20CD61990064EDA7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0E0FB55C20CD83990064EDA7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		97CFAF90291615D13675738A /* Pods_personal_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_personal_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D147B6EB9FB8A396ECDE1D /* Pods-personal-info.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-personal-info.release.xcconfig"; path = "Pods/Target Support Files/Pods-personal-info/Pods-personal-info.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,12 +121,13 @@
 			isa = PBXGroup;
 			children = (
 				0E070F3520CD1BD600AB51CE /* AppDelegate.swift */,
-				0E070F3720CD1BD600AB51CE /* ViewController.swift */,
+				0E070F3720CD1BD600AB51CE /* InitViewController.swift */,
 				0E0FB55220CD42E00064EDA7 /* SlideViewControllenar.swift */,
-				0E0FB55620CD51CC0064EDA7 /* LeftViewController.swift */,
+				0E0FB55620CD51CC0064EDA7 /* ConfigViewController.swift */,
 				0E070F3920CD1BD600AB51CE /* Main.storyboard */,
+				0E021F9D20D4CA47004A1A9E /* CustomCell.swift */,
 				0E0FB55C20CD83990064EDA7 /* AddViewController.swift */,
-				0E0FB55A20CD61990064EDA7 /* RightViewController.swift */,
+				0E0FB55A20CD61990064EDA7 /* SearchViewController.swift */,
 				0E0FB55420CD4FD60064EDA7 /* MainViewController.swift */,
 				0E070F3F20CD1BD700AB51CE /* Assets.xcassets */,
 				0E070F4120CD1BD700AB51CE /* LaunchScreen.storyboard */,
@@ -344,11 +347,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0FB55320CD42E00064EDA7 /* SlideViewControllenar.swift in Sources */,
-				0E0FB55B20CD61990064EDA7 /* RightViewController.swift in Sources */,
+				0E0FB55B20CD61990064EDA7 /* SearchViewController.swift in Sources */,
 				0E0FB55D20CD83990064EDA7 /* AddViewController.swift in Sources */,
 				0E0FB55520CD4FD60064EDA7 /* MainViewController.swift in Sources */,
-				0E070F3820CD1BD600AB51CE /* ViewController.swift in Sources */,
-				0E0FB55720CD51CC0064EDA7 /* LeftViewController.swift in Sources */,
+				0E021F9E20D4CA47004A1A9E /* CustomCell.swift in Sources */,
+				0E070F3820CD1BD600AB51CE /* InitViewController.swift in Sources */,
+				0E0FB55720CD51CC0064EDA7 /* ConfigViewController.swift in Sources */,
 				0E070F3E20CD1BD600AB51CE /* personal_info.xcdatamodeld in Sources */,
 				0E070F3620CD1BD600AB51CE /* AppDelegate.swift in Sources */,
 			);

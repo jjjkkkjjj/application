@@ -105,11 +105,13 @@ class CommonVar{
 class Section{
     var title: String
     var content: [String]
+    let fontSize: Int = 15
 
     init(title: String, content: [String]){
         self.title = title
         self.content = content
     }
+    
     /*
     func appendSection (title: String, contents: [String], initcall: Bool) -> Bool{
         if (self.titles.index(of: title) == nil){
@@ -145,6 +147,10 @@ class Section{
     func removeSection(){
 
     }
+
+    func cellHeight() -> CGFloat{
+        return CGFloat(self.content.count*(self.fontSize + 5))
+    }
 }
 
 class Item: Section{
@@ -154,7 +160,7 @@ class Item: Section{
     override init(title: String, content: [String]){
         super.init(title: title, content: content)
     }
-
+    
     func titleName() -> [String]{
         var titleNames = [String]()
         for item in self.item{
@@ -330,4 +336,11 @@ class File{
         }
         return titleindex
     }
+    /*
+    func section(section: Int) -> Item{
+        return self.contents[section]
+    }
+    func data(section: Int, row: Int) -> [String]{
+        return self.contents[section].item[row]
+    }*/
 }

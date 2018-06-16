@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RightViewController: UIViewController, UISearchBarDelegate{
+class SearchViewController: UIViewController, UISearchBarDelegate{
 
 
     var mySearchBar: UISearchBar!

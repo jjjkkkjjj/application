@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
-class LeftViewController: UIViewController {
+class ConfigViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

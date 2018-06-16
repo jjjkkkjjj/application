@@ -30,6 +30,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // デリゲートを設定する。
         myTableView.delegate = self
         myTableView.dataSource = self
+        //myTableView.estimatedRowHeight = 50
+        //myTableView.rowHeight = UITableViewAutomaticDimension
         for _ in self.File.contents{
             self.FoldingFlags.append(false)
         }
@@ -70,8 +72,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:  "cell", for:indexPath as IndexPath)
-        cell.textLabel?.text = self.File.contents[indexPath.section].titleName()[indexPath.row]
+        //let cell = tableView.dequeueReusableCell(withIdentifier:  "cell", for:indexPath as IndexPath)
+        //cell.textLabel?.text = self.File.contents[indexPath.section].titleName()[indexPath.row]
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! DataCell
+        let item = self.File.contents[indexPath.section]
+        cell.configureCell(item: item, row: indexPath.row)
 
         return cell
     }
@@ -105,6 +111,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // アラートを表示する。
         present(alert, animated: true, completion: nil)
     }
+
+    //
+    func tableView(_ tableView: UITableView,heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return self.File.contents[indexPath.section].cellHeight()
+    }
+
 
     @objc func tapHeader(gestureRecognizer: UITapGestureRecognizer) {
         // タップされたセクションを取得する。

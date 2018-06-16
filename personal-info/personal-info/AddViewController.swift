@@ -12,4 +12,12 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    func selectedSection(){
+
+    }
+
+    func selectedData(){
+
+    }
 }

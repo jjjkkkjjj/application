@@ -13,14 +13,15 @@ class SlideViewController: SlideMenuController{
     override func awakeFromNib(){
         let mainVC = storyboard?.instantiateViewController(withIdentifier: "Main")
         
-        let leftVC = storyboard?.instantiateViewController(withIdentifier: "Left")
+        let configVC = storyboard?.instantiateViewController(withIdentifier: "Config")
 
         //let rightVC = storyboard?.instantiateViewController(withIdentifier: "Right")
 
         let navigationController = UINavigationController(rootViewController: mainVC!)
 
+        //below two variale are inherit name of slidemenucontroller
         mainViewController = navigationController
-        leftViewController = leftVC
+        leftViewController = configVC
         //rightViewController = rightVC
         super.awakeFromNib()
     }
