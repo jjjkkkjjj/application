@@ -10,8 +10,11 @@ import UIKit
 
 class DataCell: UITableViewCell{
 
-    var contentTitleLabels = [UILabel]()
-    var contentDataLabels = [UILabel]()
+    var TitleLabels = [UILabel]()
+    var DataLabels = [UILabel]()
+    var Name = UILabel()
+    var titleWidth = 150
+    var titleHeight = 20
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,15 +25,25 @@ class DataCell: UITableViewCell{
     }
 
     func configureCell(item: Item, row: Int){
-        let fontSize = item.fontSize
-        for (index, contentTitle) in item.content.enumerated(){
+        titleHeight = item.fontSize
+        titleWidth = item.maxTitlesFontWidth() + 20
+
+        for contentIndex in 0..<item.contentCount {
             var tmplabel = UILabel()
-            tmplabel.frame = CGRect(x:0, y:index*(fontSize + 5), width: 300, height: (fontSize + 5))
-            tmplabel.text = contentTitle
-            tmplabel.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
-            contentTitleLabels.append(tmplabel)
-            self.addSubview(contentTitleLabels[index])
+            tmplabel.frame = CGRect(x: titleWidth + 10, y: contentIndex * (titleHeight + 5), width: 200, height: titleHeight)
+            tmplabel.text = item.content[contentIndex] + ":" + item.items[row][contentIndex]
+            tmplabel.font = UIFont.systemFont(ofSize: CGFloat(titleHeight))
+
+            DataLabels.append(tmplabel)
+            self.addSubview(DataLabels[contentIndex])
         }
+        Name.frame = CGRect(x: 0, y: Int(self.frame.height)/2 - (titleHeight + 5)/2, width: titleWidth, height: titleHeight)
+        Name.text = item.itemtitles[row]
+        Name.font = UIFont.systemFont(ofSize: CGFloat(titleHeight))
+        Name.textColor = UIColor.white
+        Name.backgroundColor = UIColor.gray
+        Name.textAlignment = NSTextAlignment.center
+        self.addSubview(Name)
     }
 }
 

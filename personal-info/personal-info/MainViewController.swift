@@ -67,13 +67,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.FoldingFlags[section] ? 0: self.File.contents[section].item.count
+        return self.FoldingFlags[section] ? 0: self.File.contents[section].itemCount()
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCell(withIdentifier:  "cell", for:indexPath as IndexPath)
-        //cell.textLabel?.text = self.File.contents[indexPath.section].titleName()[indexPath.row]
+        //cell.textLabel?.text = self.File.contents[indexPath.section].contenttitles[indexPath.row]
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! DataCell
         let item = self.File.contents[indexPath.section]
@@ -101,7 +101,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // 選択したセルの値を出力する。
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         // タップしたセルのテキストを取得する。
-        let selectText = self.File.contents[indexPath.section].titleName()[indexPath.row]
+        let selectText = self.File.contents[indexPath.section].itemtitles[indexPath.row]
 
         // アラートを生成する。
         let alert: UIAlertController = UIAlertController(title: selectText, message: "\(selectText)を選択しました。", preferredStyle:  UIAlertControllerStyle.alert)
@@ -128,7 +128,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.FoldingFlags[section] = !self.FoldingFlags[section]
 
         // タップされたセクションを再読込する。
-        myTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .none)
+        myTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
     }
 
     private func dock(){

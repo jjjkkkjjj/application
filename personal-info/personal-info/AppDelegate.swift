@@ -155,26 +155,40 @@ class Section{
 
 class Item: Section{
     //
-    var item = [[String]]()
+    var items = [[String]]()
+    var itemtitles = [String]()
+    var contentCount: Int
 
     override init(title: String, content: [String]){
+        self.contentCount = content.count
         super.init(title: title, content: content)
     }
-    
-    func titleName() -> [String]{
-        var titleNames = [String]()
-        for item in self.item{
-            titleNames.append(item[0])
-        }
-        return titleNames
-    }
 
-    func appendItem(contentData: [String]){
-        self.item.append(contentData)
+    func appendItem(contentData: [String], itemtitle: String){
+        self.itemtitles.append(itemtitle)
+        self.items.append(Array(contentData))
     }
 
     func removeData(sectionRow: Int){
-        self.item.remove(at: sectionRow)
+        self.itemtitles.remove(at: sectionRow)
+        self.items.remove(at: sectionRow)
+        self.contentCount -= 1
+    }
+
+    func itemCount() -> Int{
+        return self.itemtitles.count
+    }
+
+    func maxTitlesFontWidth() -> Int{
+        let font = UIFont.systemFont(ofSize: CGFloat(self.fontSize))
+        var maxw = 0
+        for title in self.itemtitles{
+            let width = Int(title.widthOfString(usingFont: font))
+            if (width > maxw){
+                maxw = width
+            }
+        }
+        return maxw
     }
 }
 
@@ -241,7 +255,7 @@ class File{
                 csvData.enumerateLines{ (line, stop) -> () in
                     var values = line.components(separatedBy: ",")
 
-                    var item = Item(title: values[0], content: Array(values[1..<values.count]))
+                    var item = Item(title: values[0], content: Array(values[2..<values.count]))
                     self.contents.append(item)
                     self.sectionInfo.append(line)
                     self.contentData.append([])
@@ -263,7 +277,7 @@ class File{
                     var values = line.components(separatedBy: ",")
                     let titleIndex = self.sectionTitleIndex(title: values[0])
                     if (titleIndex != -1){
-                        self.contents[titleIndex].appendItem(contentData: Array(values[1..<values.count]))
+                        self.contents[titleIndex].appendItem(contentData: Array(values[2..<values.count]), itemtitle: values[1])
                         self.contentData[titleIndex].append(line)
                     }
                 }
@@ -343,4 +357,18 @@ class File{
     func data(section: Int, row: Int) -> [String]{
         return self.contents[section].item[row]
     }*/
+}
+
+extension String {
+    public func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let attributes = [NSAttributedStringKey.font: font]
+        let size = self.size(withAttributes: attributes)
+        return size.width
+    }
+
+    public func heightOfString(usingFont font: UIFont) -> CGFloat {
+        let attributes = [NSAttributedStringKey.font: font]
+        let size = self.size(withAttributes: attributes)
+        return size.height
+    }
 }
