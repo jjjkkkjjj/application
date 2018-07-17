@@ -22,6 +22,8 @@
 		0E0FB55920CD538A0064EDA7 /* icon in Resources */ = {isa = PBXBuildFile; fileRef = 0E0FB55820CD538A0064EDA7 /* icon */; };
 		0E0FB55B20CD61990064EDA7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55A20CD61990064EDA7 /* SearchViewController.swift */; };
 		0E0FB55D20CD83990064EDA7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0FB55C20CD83990064EDA7 /* AddViewController.swift */; };
+		0EB5264D20FDAE7D00D2FBAB /* AddSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5264C20FDAE7D00D2FBAB /* AddSectionViewController.swift */; };
+		0EB5264F20FDAEB200D2FBAB /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5264E20FDAEB200D2FBAB /* AddContentViewController.swift */; };
 		EB56C9D54BE714C55CBF7A67 /* Pods_personal_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CFAF90291615D13675738A /* Pods_personal_info.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		0E0FB55820CD538A0064EDA7 /* icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icon; sourceTree = "<group>"; };
 		0E0FB55A20CD61990064EDA7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0E0FB55C20CD83990064EDA7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		0EB5264C20FDAE7D00D2FBAB /* AddSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSectionViewController.swift; sourceTree = "<group>"; };
+		0EB5264E20FDAEB200D2FBAB /* AddContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
 		97CFAF90291615D13675738A /* Pods_personal_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_personal_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D147B6EB9FB8A396ECDE1D /* Pods-personal-info.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-personal-info.release.xcconfig"; path = "Pods/Target Support Files/Pods-personal-info/Pods-personal-info.release.xcconfig"; sourceTree = "<group>"; };
 		FBF74B21B0804849BD724FA6 /* Pods-personal-info.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-personal-info.debug.xcconfig"; path = "Pods/Target Support Files/Pods-personal-info/Pods-personal-info.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		0E070F3420CD1BD500AB51CE /* personal-info */ = {
 			isa = PBXGroup;
 			children = (
+				0EB5264C20FDAE7D00D2FBAB /* AddSectionViewController.swift */,
+				0EB5264E20FDAEB200D2FBAB /* AddContentViewController.swift */,
 				0E070F3520CD1BD600AB51CE /* AppDelegate.swift */,
 				0E070F3720CD1BD600AB51CE /* InitViewController.swift */,
 				0E0FB55220CD42E00064EDA7 /* SlideViewControllenar.swift */,
@@ -346,8 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB5264D20FDAE7D00D2FBAB /* AddSectionViewController.swift in Sources */,
 				0E0FB55320CD42E00064EDA7 /* SlideViewControllenar.swift in Sources */,
 				0E0FB55B20CD61990064EDA7 /* SearchViewController.swift in Sources */,
+				0EB5264F20FDAEB200D2FBAB /* AddContentViewController.swift in Sources */,
 				0E0FB55D20CD83990064EDA7 /* AddViewController.swift in Sources */,
 				0E0FB55520CD4FD60064EDA7 /* MainViewController.swift in Sources */,
 				0E021F9E20D4CA47004A1A9E /* CustomCell.swift in Sources */,

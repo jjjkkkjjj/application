@@ -10,7 +10,6 @@ import UIKit
 
 class DataCell: UITableViewCell{
 
-    var TitleLabels = [UILabel]()
     var DataLabels = [UILabel]()
     var Name = UILabel()
     var titleWidth = 150
@@ -25,6 +24,14 @@ class DataCell: UITableViewCell{
     }
 
     func configureCell(item: Item, row: Int){
+        // initialization
+        DataLabels = [UILabel]()
+        Name = UILabel()
+        var subviews = self.subviews
+        for subview in subviews{
+            subview.removeFromSuperview()
+        }
+
         titleHeight = item.fontSize
         titleWidth = item.maxTitlesFontWidth() + 20
 

@@ -66,17 +66,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return self.File.contents[section].title
     }
 
+    // セルの数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.FoldingFlags[section] ? 0: self.File.contents[section].itemCount()
     }
 
-
+    // セルを返す
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCell(withIdentifier:  "cell", for:indexPath as IndexPath)
         //cell.textLabel?.text = self.File.contents[indexPath.section].contenttitles[indexPath.row]
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! DataCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! DataCell
         let item = self.File.contents[indexPath.section]
+
         cell.configureCell(item: item, row: indexPath.row)
 
         return cell
